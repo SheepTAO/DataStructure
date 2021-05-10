@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o -o DataStructure 
