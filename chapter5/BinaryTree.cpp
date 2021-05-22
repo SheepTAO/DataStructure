@@ -32,20 +32,27 @@ void InOrder(const BiTNode*);                                           // 中�
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
-void InThread(const BiTNode*, ThreadNode*&);
-ThreadNode* CreateInThread(const BiTNode*);                      // 生成中序线索二叉树
+void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
+void InThread(ThreadNode*&, ThreadNode*&);                              // 中序遍历二叉树线索化
+void CreateInThread(ThreadNode*&);                                      // 创建中序线索二叉树
+
 
 int main()
 {
-    BiTNode* tree = nullptr;
+    BiTNode* normalTree = nullptr;
+    ThreadNode* threadNode = nullptr;
     int dataArr[] = {42, 63, 15, 78, 23, 99, 65, 30, 73, 88, 12};
     size_t size = sizeof(dataArr)/sizeof(dataArr[0]);
 
     for (size_t i = 0; i < size; ++i) {
-        InsertNode(tree, dataArr[i]);
+        InsertNode(normalTree, dataArr[i]);
     }
-    cout << "PreOrder:\t"; InOrder(tree);  cout << endl;
-    cout << "LevelOrder:\t"; LevelOrder(tree);   cout << endl;
+    for (size_t i = 0; i < size; ++i) {
+        InsertThread(threadNode, dataArr[i]);
+    }
+    CreateInThread(threadNode);
+    cout << "PreOrder:\t"; InOrder(normalTree);  cout << endl;
+    cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
 
     return 0;
 }
@@ -64,7 +71,7 @@ void InsertNode(BiTNode*& node, ElemType data) {
     }
 }
 
-void PreOrder(const BiTNode *node) {
+void PreOrder(const BiTNode* node) {
     if (node) {
         cout << node->data << '\t';
         PreOrder(node->lChild);
@@ -72,7 +79,7 @@ void PreOrder(const BiTNode *node) {
     }
 }
 
-void InOrder(const BiTNode *node) {
+void InOrder(const BiTNode* node) {
     if (node) {
         InOrder(node->lChild);
         cout << node->data << '\t';
@@ -80,7 +87,7 @@ void InOrder(const BiTNode *node) {
     }
 }
 
-void PostOrder(const BiTNode *node) {
+void PostOrder(const BiTNode* node) {
     if (node) {
         PostOrder(node->lChild);
         PostOrder(node->rChild);
@@ -88,7 +95,7 @@ void PostOrder(const BiTNode *node) {
     }
 }
 
-void LevelOrder(BiTNode *node) {
+void LevelOrder(BiTNode* node) {
     if (node) {
         queue<BiTNode*> q;
         q.push(node);
@@ -105,12 +112,50 @@ void LevelOrder(BiTNode *node) {
     }
 }
 
-void 
+void InsertThread(ThreadNode*& node, ElemType data) {
+    if (!node) {
+        node = new ThreadNode;
+        node->data = data;
+        node->lChild = nullptr;
+        node->rChild = nullptr;
+        node->lTag = -1;
+        node->rTag = -1;
+    } else {
+        if (data < node->data) {
+            InsertThread(node->lChild, data);
+            node->lTag = 0;                                 // 左孩子存在
+        } else {
+            InsertThread(node->rChild, data);
+            node->rTag = 0;                                 // 右孩子存在
+        }
+    }
+}
 
-ThreadNode* CreateInThread(const BiTNode *bNode) {
-    ThreadNode *pre = nullptr;
-    if (!bNode) {
-        InThread(bNode, pre);
+void LinkThread(ThreadNode*& p, ThreadNode*& pre) {
+    if (!p->lChild) {
+        p->lChild = pre;                                    // 左子树为空，建立前驱线索
+        p->lTag = 1;
+    }
+    if (pre && !pre->rChild) {
+        pre->rChild = p;                                    // 建立前驱结点的后继线索
+        pre->rTag = 1;
+    }
+    pre = p;                                                // 标记当前结点成为刚刚访问过的结点
+}
 
+void InThread(ThreadNode*& p, ThreadNode*& pre) {
+    if (p) {
+        InThread(p->lChild, pre);
+        LinkThread(p, pre);
+        InThread(p->rChild, pre);
+    }
+}
+
+void CreateInThread(ThreadNode*& node) {
+    ThreadNode* pre = nullptr;
+    if (node) {                                             // 非空二叉树，线索化
+        InThread(node, pre);                                // 线索化二叉树
+        pre->rChild = nullptr;                              // 处理遍历的最后一个结点
+        pre->rTag = 1;
     }
 }
