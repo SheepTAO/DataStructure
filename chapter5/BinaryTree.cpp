@@ -31,6 +31,7 @@ void PreOrder(const BiTNode*);                                          // 先�
 void InOrder(const BiTNode*);                                           // 中序遍历
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
+BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
@@ -40,7 +41,7 @@ ThreadNode* FirstNode(ThreadNode*);                                     // 寻�
 ThreadNode* NextNode(ThreadNode*);                                      // 寻找下一个结点
 void InThreadOrder(ThreadNode*);                                        // 遍历中序线索树
 // --------------------------------------
-BiTNode* SearchNext(BiTNode*);                                  // 寻找后继结点前驱指针
+BiTNode* SearchNext(BiTNode*);                                          // 寻找后继结点前驱指针
 void SearchNode(BiTNode*&, BiTNode*&, ElemType);                        // 寻找匹配结点并返回此指针和前驱指针
 bool DelNode(BiTNode*&, ElemType);                                      // 删除二叉排序树中的结点
 
@@ -62,12 +63,17 @@ int main()
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
-    if(DelNode(normalTree, 78)) {
+    if (DelNode(normalTree, 78)) {
         cout << "Delete Finished." << endl;
         cout << "Now inOrder:\t"; InOrder(normalTree);  cout << endl;
     } else {
         cout << "Delete Failed!" << endl;
     }
+
+    if (SearchSeq(normalTree, 78))
+        cout << "Find!" << endl;
+    else
+        cout << "Error!" << endl;
 
     return 0;
 }
@@ -124,6 +130,17 @@ void LevelOrder(BiTNode* node) {
         }
     } else {
         cout << "Empty!!!" << endl;
+    }
+}
+
+BiTNode* SearchSeq(BiTNode* node, ElemType data) {
+    if (node && node->data != data) {
+        if (node->data > data)
+            return SearchSeq(node->lChild, data);
+        else
+            return SearchSeq(node->rChild, data);
+    } else {
+        return node;
     }
 }
 
