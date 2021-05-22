@@ -13,16 +13,27 @@ using std::endl;
 using std::queue;
 using ElemType = int;
 
+// 基本二叉树
 typedef struct BiTNode {
     ElemType data;
     struct BiTNode *lChild, *rChild;
 }BiTNode;
+
+// 线索二叉树
+typedef struct ThreadNode {
+    ElemType data;
+    struct ThreadNode *lChild, *rChild;
+    int lTag, rTag;
+}ThreadNode;
 
 void InsertNode(BiTNode*&, ElemType);                                   // 插入节点
 void PreOrder(const BiTNode*);                                          // 先序遍历
 void InOrder(const BiTNode*);                                           // 中序遍历
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
+void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
+void InThread(const BiTNode*, ThreadNode*&);
+ThreadNode* CreateInThread(const BiTNode*);                      // 生成中序线索二叉树
 
 int main()
 {
@@ -91,5 +102,15 @@ void LevelOrder(BiTNode *node) {
         }
     } else {
         cout << "Empty!!!" << endl;
+    }
+}
+
+void 
+
+ThreadNode* CreateInThread(const BiTNode *bNode) {
+    ThreadNode *pre = nullptr;
+    if (!bNode) {
+        InThread(bNode, pre);
+
     }
 }
