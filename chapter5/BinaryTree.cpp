@@ -38,6 +38,8 @@ void CreateInThread(ThreadNode*&);                                      // 创�
 ThreadNode* FirstNode(ThreadNode*);                                     // 寻找中序线索二叉树中中序序列下的第一个结点
 ThreadNode* NextNode(ThreadNode*);                                      // 寻找下一个结点
 void InThreadOrder(ThreadNode*);                                        // 遍历中序线索树
+BiTNode* SearchNode(BiTNode*, ElemType);                                // 寻找匹配结点并返回此指针
+bool DelNode(BiTNode*&, ElemType);                                      // 删除二叉排序树中的结点
 
 int main()
 {
@@ -186,5 +188,24 @@ void InThreadOrder(ThreadNode* node) {
         if (p->rTag == 1)
             cout << '\'';
         cout << '\t';
+    }
+}
+
+BiTNode* SearchNode(BiTNode* node, ElemType data) {
+    if (!node && node->data != data) {
+        if (data < node->data) 
+            return SearchNode(node->lChild, data);
+        else
+            return SearchNode(node->rChild, data);
+    } else {
+        return node;
+    }
+}
+
+bool DelNode(BiTNode*& node, ElemType data) {
+    if (!node) {
+        return false;
+    } else {
+        if ()
     }
 }
