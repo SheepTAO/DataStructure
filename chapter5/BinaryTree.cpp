@@ -31,6 +31,7 @@ void PreOrder(const BiTNode*);                                          // 先�
 void InOrder(const BiTNode*);                                           // 中序遍历
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
+// --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
 void InThread(ThreadNode*&, ThreadNode*&);                              // 中序遍历二叉树线索化
@@ -38,14 +39,16 @@ void CreateInThread(ThreadNode*&);                                      // 创�
 ThreadNode* FirstNode(ThreadNode*);                                     // 寻找中序线索二叉树中中序序列下的第一个结点
 ThreadNode* NextNode(ThreadNode*);                                      // 寻找下一个结点
 void InThreadOrder(ThreadNode*);                                        // 遍历中序线索树
-BiTNode* SearchNode(BiTNode*, ElemType);                                // 寻找匹配结点并返回此指针
+// --------------------------------------
+BiTNode* SearchNext(BiTNode*);                                  // 寻找后继结点前驱指针
+void SearchNode(BiTNode*&, BiTNode*&, ElemType);                        // 寻找匹配结点并返回此指针和前驱指针
 bool DelNode(BiTNode*&, ElemType);                                      // 删除二叉排序树中的结点
 
 int main()
 {
     BiTNode* normalTree = nullptr;
     ThreadNode* threadTree = nullptr;
-    int dataArr[] = {42, 63, 15, 78, 23, 99, 65, 30, 73, 88, 12};
+    int dataArr[] = {42, 63, 15, 78, 23, 99, 65, 30, 73, 88, 12, 111};
     size_t size = sizeof(dataArr)/sizeof(dataArr[0]);
 
     for (size_t i = 0; i < size; ++i) {
@@ -58,6 +61,13 @@ int main()
     cout << "InOrder:\t"; InOrder(normalTree);  cout << endl;
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
+
+    if(DelNode(normalTree, 78)) {
+        cout << "Delete Finished." << endl;
+        cout << "Now inOrder:\t"; InOrder(normalTree);  cout << endl;
+    } else {
+        cout << "Delete Failed!" << endl;
+    }
 
     return 0;
 }
@@ -191,21 +201,67 @@ void InThreadOrder(ThreadNode* node) {
     }
 }
 
-BiTNode* SearchNode(BiTNode* node, ElemType data) {
-    if (!node && node->data != data) {
-        if (data < node->data) 
-            return SearchNode(node->lChild, data);
-        else
-            return SearchNode(node->rChild, data);
-    } else {
-        return node;
+// 中序遍历的直接后继
+BiTNode* SearchNext(BiTNode* node) {
+    while (node->lChild)
+        node = node->lChild;
+    return node;
+}
+
+// p指向当前结点，pre指向父结点
+void SearchNode(BiTNode*& p, BiTNode*& pre, ElemType data) {
+    if (p && p->data != data) {
+        pre = p;
+        if (data < p->data) {
+            p = p->lChild;
+            SearchNode(p, pre, data);                       // 向左孩子搜索
+        }
+        else {
+            p = p->rChild;
+            SearchNode(p, pre, data);                       // 向右孩子搜索
+        }
     }
 }
 
 bool DelNode(BiTNode*& node, ElemType data) {
+    BiTNode* p, *pre;
+    pre = nullptr;
+    p = node;
+    bool LR = false;                                                // 0-左，1-右
+
     if (!node) {
-        return false;
+        return false;                                               // 空树
     } else {
-        if ()
+        SearchNode(p, pre, data);
+        LR = pre->lChild == p ? 1 : 0;                              // 确定删除是左子树还是右子树
+        if (p) {
+            if (!p->lChild && !p->rChild) {                         // 删除叶子结点
+                if (LR) 
+                    pre->lChild = nullptr;
+                else
+                    pre->rChild = nullptr;
+                delete p;
+            } else if (p->lChild && !p->rChild) {                   // 只有左孩子
+                if (LR)
+                    pre->lChild = p->lChild;
+                else
+                    pre->rChild = p->lChild;
+                delete p;
+            } else if (p->rChild && !p->lChild) {                   // 只有右孩子
+                if (LR)
+                    pre->lChild = p->rChild;
+                else
+                    pre->rChild = p->rChild;
+                delete p;
+            } else {                                                // 左孩子非空且右孩子非空
+                BiTNode* del = SearchNext(p->rChild);
+                ElemType newData = del->data;
+                DelNode(p, del->data);                              // 回归前三种删除方式
+                p->data = newData;
+            }
+            return true;
+        } else {
+            return false;                                           // 没有找到该元素
+        }
     }
 }
