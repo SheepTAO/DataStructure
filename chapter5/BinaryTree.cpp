@@ -35,12 +35,14 @@ void InsertThread(ThreadNode*&, ElemType);                              // 插�
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
 void InThread(ThreadNode*&, ThreadNode*&);                              // 中序遍历二叉树线索化
 void CreateInThread(ThreadNode*&);                                      // 创建中序线索二叉树
-
+ThreadNode* FirstNode(ThreadNode*);                                     // 寻找中序线索二叉树中中序序列下的第一个结点
+ThreadNode* NextNode(ThreadNode*);                                      // 寻找下一个结点
+void InThreadOrder(ThreadNode*);                                        // 遍历中序线索树
 
 int main()
 {
     BiTNode* normalTree = nullptr;
-    ThreadNode* threadNode = nullptr;
+    ThreadNode* threadTree = nullptr;
     int dataArr[] = {42, 63, 15, 78, 23, 99, 65, 30, 73, 88, 12};
     size_t size = sizeof(dataArr)/sizeof(dataArr[0]);
 
@@ -48,11 +50,12 @@ int main()
         InsertNode(normalTree, dataArr[i]);
     }
     for (size_t i = 0; i < size; ++i) {
-        InsertThread(threadNode, dataArr[i]);
+        InsertThread(threadTree, dataArr[i]);
     }
-    CreateInThread(threadNode);
-    cout << "PreOrder:\t"; InOrder(normalTree);  cout << endl;
+    CreateInThread(threadTree);
+    cout << "InOrder:\t"; InOrder(normalTree);  cout << endl;
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
+    cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
     return 0;
 }
@@ -157,5 +160,31 @@ void CreateInThread(ThreadNode*& node) {
         InThread(node, pre);                                // 线索化二叉树
         pre->rChild = nullptr;                              // 处理遍历的最后一个结点
         pre->rTag = 1;
+    }
+}
+
+ThreadNode* FirstNode(ThreadNode* node) {
+    while (node->lTag == 0) {
+        node = node->lChild;
+    }
+
+    return node;
+}
+
+ThreadNode* NextNode(ThreadNode* node) {
+    if (node->rTag == 0) 
+        return FirstNode(node->rChild);                     // 寻找此结点的直接后继，右子树的最左下角的结点
+    else
+        return node->rChild;                                // rTag = 1 直接返回后继线索
+}
+
+void InThreadOrder(ThreadNode* node) {
+    for (ThreadNode* p = FirstNode(node); p != nullptr; p = NextNode(p)) {
+        if (p->lTag == 1)
+            cout << '\'';
+        cout << p->data;
+        if (p->rTag == 1)
+            cout << '\'';
+        cout << '\t';
     }
 }
