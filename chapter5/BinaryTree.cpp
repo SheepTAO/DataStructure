@@ -6,9 +6,11 @@
 */
 
 #include <iostream>
+#include <queue>
 
 using std::cout;
 using std::endl;
+using std::queue;
 using ElemType = int;
 
 typedef struct BiTNode {
@@ -20,6 +22,7 @@ void InsertNode(BiTNode*&, ElemType);                                   // 插�
 void PreOrder(const BiTNode*);                                          // 先序遍历
 void InOrder(const BiTNode*);                                           // 中序遍历
 void PostOrder(const BiTNode*);                                         // 后序遍历
+void LevelOrder(BiTNode*);                                              // 层次遍历
 
 int main()
 {
@@ -30,8 +33,8 @@ int main()
     for (size_t i = 0; i < size; ++i) {
         InsertNode(tree, dataArr[i]);
     }
-    InOrder(tree);  cout << endl;
-    PostOrder(tree);    cout << endl;
+    cout << "PreOrder:\t"; InOrder(tree);  cout << endl;
+    cout << "LevelOrder:\t"; LevelOrder(tree);   cout << endl;
 
     return 0;
 }
@@ -71,5 +74,22 @@ void PostOrder(const BiTNode *node) {
         PostOrder(node->lChild);
         PostOrder(node->rChild);
         cout << node->data << '\t';
+    }
+}
+
+void LevelOrder(BiTNode *node) {
+    if (node) {
+        queue<BiTNode*> q;
+        q.push(node);
+        while(!q.empty()) {
+            cout << q.front()->data << '\t';
+            if (q.front()->lChild)                          // 左子树不为空，则左子树根节点入队
+                q.push(q.front()->lChild);
+            if (q.front()->rChild)                          // 右子树不为空，则右子树根节点入队
+                q.push(q.front()->rChild);
+            q.pop();
+        }
+    } else {
+        cout << "Empty!!!" << endl;
     }
 }
