@@ -9,6 +9,7 @@
 
 using std::cout;
 using std::endl;
+using std::cin;
 using ElemType = int;
 
 typedef struct {
@@ -16,18 +17,34 @@ typedef struct {
     size_t tableLen;
 }SSTable;
 
-void InitSSTable(SSTable&, ElemType*);                                  // 初始化顺序表
-void DisplaySSTable(const SSTable&);                                    // 打印顺序表 
-size_t SearchSeq(const SSTable&, const ElemType, size_t);                       // 顺序查找元素
+void InitSSTable(SSTable&, ElemType*, size_t);                          // 初始化顺序表
+void BubbleSort(SSTable&);                                              // 冒泡排序 
+void DisplaySSTable(const SSTable&);                                    // 打印顺序表
+size_t SearchSeq(const SSTable&, const ElemType);                       // 顺序查找元素
 void Clear(SSTable&);                                                   // 回收工作            
 
 int main()
 {
     ElemType data[] = {15, 36, 78, 45, 12, 46, 82, 64, 19, 35, 28, 67};
     SSTable ss;
+    ElemType key;
 
     InitSSTable(ss, data, sizeof(data)/sizeof(data[0]));
-    DisplaySSTable(ss);     cout << endl;
+
+    cout << "Before sort:" << endl;
+    DisplaySSTable(ss);
+    cout << endl;
+
+    cout << "After sort:" << endl;
+    BubbleSort(ss);
+    DisplaySSTable(ss);
+    cout << endl;
+    // cout << "Search Num:";
+    // cin >> key;
+    // if (SearchSeq(ss, key))
+    //     cout << "Find!" << endl;
+    // else
+    //     cout << "Error!" << endl;
 
     Clear(ss);
     return 0;
@@ -43,6 +60,20 @@ void InitSSTable(SSTable& table, ElemType* data, size_t size) {
     table.tableLen = size;
 }
 
+void BubbleSort(SSTable& table) {
+    ElemType temp;
+
+    for (size_t i = 2; i < table.tableLen; ++i) {
+        for (size_t j = 1; j < i; ++j) {
+            if (table.data[j] > table.data[i]) {
+                temp = table.data[j];
+                table.data[j] = table.data[i];
+                table.data[i] = temp;
+            }
+        }
+    }
+}
+
 void DisplaySSTable(const SSTable& table) {
     for (size_t i = 1; i < table.tableLen; ++i) {
         cout << table.data[i] << '\t';
@@ -53,7 +84,7 @@ size_t SearchSeq(const SSTable& table, const ElemType key) {
     table.data[0] = key;                            // “哨兵”
     size_t i = table.tableLen;
 
-    for (; table.data[i] != key; --i);              // 从后网前查找
+    for (; table.data[i] != key; --i);              // 从后往前查找
     
     return i;
 }
