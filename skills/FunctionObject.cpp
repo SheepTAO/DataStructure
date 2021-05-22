@@ -5,6 +5,7 @@
 ************************************************
 */
 #include <iostream>
+#include <functional>
 
 using std::cout;
 using std::endl;
@@ -20,7 +21,7 @@ int func2(FuncType func, int a, int b) {
     return func(a, b);
 }
 
-int func3(int add(int, int), int a, int b) {        // 第三种方式：定义一个函数实例
+int func3(int func(int, int), int a, int b) {        // 第三种方式：定义一个函数实例
     return func(a, b);
 }
 
@@ -30,8 +31,12 @@ int add(int a, int b) {
 
 int main()
 {
+    int(*func4)(int, int) = add;                     // 第四种方式
+
     cout << "Func1:" << func1(add, 1, 2) << endl;
     cout << "Func2:" << func2(add, 1, 2) << endl;
+    cout << "Func3:" << func3(add, 1, 2) << endl;
+    cout << "Func4:" << func4(1, 2) << endl;
 
     return 0;
 }
