@@ -32,6 +32,7 @@ void InOrder(const BiTNode*);                                           // 中�
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
+int DeepthTree(BiTNode*);                                               // 获取树的深度
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
@@ -63,6 +64,8 @@ int main()
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
+    cout << "TreeDeepth:\t" << DeepthTree(normalTree) << endl;
+
     if (DelNode(normalTree, 78)) {
         cout << "Delete Finished." << endl;
         cout << "Now inOrder:\t"; InOrder(normalTree);  cout << endl;
@@ -70,7 +73,7 @@ int main()
         cout << "Delete Failed!" << endl;
     }
 
-    if (SearchSeq(normalTree, 78))
+    if (SearchSeq(normalTree, 99))
         cout << "Find!" << endl;
     else
         cout << "Error!" << endl;
@@ -142,6 +145,17 @@ BiTNode* SearchSeq(BiTNode* node, ElemType data) {
     } else {
         return node;
     }
+}
+
+int DeepthTree(BiTNode* node) {
+    if (node) {
+        int hl = DeepthTree(node->lChild);
+        int hr = DeepthTree(node->rChild);
+
+        return hl > hr ? hl + 1 : hr + 1;
+    } else {
+        return 0;
+    } 
 }
 
 void InsertThread(ThreadNode*& node, ElemType data) {
