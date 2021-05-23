@@ -1,2 +1,2 @@
-# DataStructure
-学习GitHub使用,以及提交自己的数据结构学习。
+# 学习GitHub使用
+记录考研期间数据结构的代码实现。
