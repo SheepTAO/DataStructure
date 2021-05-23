@@ -32,7 +32,8 @@ void InOrder(const BiTNode*);                                           // 中�
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
-int DeepthTree(BiTNode*);                                               // 获取树的深度
+int DeepthTree(const BiTNode*);                                         // 获取树的深度
+int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
@@ -65,6 +66,7 @@ int main()
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
     cout << "TreeDeepth:\t" << DeepthTree(normalTree) << endl;
+    cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
 
     if (DelNode(normalTree, 78)) {
         cout << "Delete Finished." << endl;
@@ -147,7 +149,7 @@ BiTNode* SearchSeq(BiTNode* node, ElemType data) {
     }
 }
 
-int DeepthTree(BiTNode* node) {
+int DeepthTree(const BiTNode* node) {
     if (node) {
         int hl = DeepthTree(node->lChild);
         int hr = DeepthTree(node->rChild);
@@ -156,6 +158,16 @@ int DeepthTree(BiTNode* node) {
     } else {
         return 0;
     } 
+}
+
+int LeavesCounts(const BiTNode* node) {
+    if (!node) {
+        return 0;
+    } else if (!node->lChild && !node->rChild) {
+        return 1;
+    } else {
+        return LeavesCounts(node->lChild) + LeavesCounts(node->rChild); 
+    }
 }
 
 void InsertThread(ThreadNode*& node, ElemType data) {
