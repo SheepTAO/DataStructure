@@ -7,10 +7,12 @@
 
 #include <iostream>
 #include <queue>
+#include <stack>
 
 using std::cout;
 using std::endl;
 using std::queue;
+using std::stack;
 using ElemType = int;
 
 #define MaxSize 100
@@ -28,10 +30,14 @@ typedef struct ThreadNode {
     int lTag, rTag;
 }ThreadNode;
 
+// --------------------------------------
 void InsertNode(BiTNode*&, ElemType);                                   // 插入节点
 void PreOrder(const BiTNode*);                                          // 先序遍历
+void PreOrderNonRecursive(BiTNode*);                                    // 先序遍历非递归
 void InOrder(const BiTNode*);                                           // 中序遍历
+void InOrderNonRecursive(BiTNode*);                                     // 中序遍历非递归
 void PostOrder(const BiTNode*);                                         // 后序遍历
+void PostOrderNonRecursive(BiTNode*);                                   // 后序遍历非递归
 void LevelOrder(BiTNode*);                                              // 层次遍历
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
 int DepthTree(const BiTNode*);                                          // 获取树的深度
@@ -50,6 +56,7 @@ void InThreadOrder(ThreadNode*);                                        // 遍�
 BiTNode* SearchNext(BiTNode*);                                          // 寻找后继结点前驱指针
 void SearchNode(BiTNode*&, BiTNode*&, ElemType);                        // 寻找匹配结点并返回此指针和前驱指针
 bool DelNode(BiTNode*&, ElemType);                                      // 删除二叉排序树中的结点
+// --------------------------------------
 
 int main()
 {
@@ -65,7 +72,10 @@ int main()
         InsertThread(threadTree, dataArr[i]);
     }
     CreateInThread(threadTree);
+    cout << "PreOrder:\t"; PreOrder(normalTree); cout << endl;
+    cout << "PreOrderNonRecursive:\t"; PreOrderNonRecursive(normalTree); cout << endl;
     cout << "InOrder:\t"; InOrder(normalTree);  cout << endl;
+    cout << "InOrderNonRecursive:\t"; InOrderNonRecursive(normalTree); cout << endl;
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
@@ -103,6 +113,7 @@ void InsertNode(BiTNode*& node, ElemType data) {
     }
 }
 
+// 递归先序遍历
 void PreOrder(const BiTNode* node) {
     if (node) {
         cout << node->data << '\t';
@@ -111,6 +122,24 @@ void PreOrder(const BiTNode* node) {
     }
 }
 
+// 非递归先序遍历
+void PreOrderNonRecursive(BiTNode* node) {
+    stack<BiTNode*> s;
+
+    while (node || !s.empty()) {                            // 结点非空 || 栈非空
+        if (node) {                                         // 非空结点
+            cout << node->data << "\t";                     // 先打印结点数据
+            s.push(node);                                   // 将结点入栈
+            node = node->lChild;                            // 访问该结点左孩子
+        } else {                                            // 空结点
+            node = s.top();
+            s.pop();                                        // 栈顶结点出栈
+            node = node->rChild;                            // 访问该结点右孩子
+        }
+    }
+}
+
+// 递归中序遍历
 void InOrder(const BiTNode* node) {
     if (node) {
         InOrder(node->lChild);
@@ -119,11 +148,38 @@ void InOrder(const BiTNode* node) {
     }
 }
 
+// 非递归中序遍历
+void InOrderNonRecursive(BiTNode* node) {
+    stack<BiTNode*> s;
+
+    while (node || !s.empty()) {                            // 结点非空 || 栈非空
+        if (node) {                                         // 非空结点
+            s.push(node);                                   // 该结点入栈
+            node = node->lChild;                            // 访问左孩子
+        } else {                                            // 空结点
+            node = s.top();
+            s.pop();
+            cout << node->data << "\t";                     // 打印结点数据
+            node = node->rChild;                            // 访问右孩子
+        }
+    }
+}
+
+// 递归后序遍历
 void PostOrder(const BiTNode* node) {
     if (node) {
         PostOrder(node->lChild);
         PostOrder(node->rChild);
         cout << node->data << '\t';
+    }
+}
+
+// 非递归后序遍历
+void PostOrderNonRecursive(BiTNode* node) {
+    stack<BiTNode*> s;
+
+    while (node || !s.empty()) {
+
     }
 }
 
