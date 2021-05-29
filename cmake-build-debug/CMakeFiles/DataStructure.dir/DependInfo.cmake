@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp" "/home/archtao/Works/Cpp/DataStructure/cmake-build-debug/CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o"
+  "/home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp" "/home/archtao/Works/Cpp/DataStructure/cmake-build-debug/CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -142,32 +142,32 @@ DataStructure/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/build
 .PHONY : DataStructure/fast
 
-chapter5/BST.o: chapter5/BST.cpp.o
+chapter5/BinaryTree.o: chapter5/BinaryTree.cpp.o
 
-.PHONY : chapter5/BST.o
+.PHONY : chapter5/BinaryTree.o
 
 # target to build an object file
-chapter5/BST.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o
-.PHONY : chapter5/BST.cpp.o
+chapter5/BinaryTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o
+.PHONY : chapter5/BinaryTree.cpp.o
 
-chapter5/BST.i: chapter5/BST.cpp.i
+chapter5/BinaryTree.i: chapter5/BinaryTree.cpp.i
 
-.PHONY : chapter5/BST.i
+.PHONY : chapter5/BinaryTree.i
 
 # target to preprocess a source file
-chapter5/BST.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BST.cpp.i
-.PHONY : chapter5/BST.cpp.i
+chapter5/BinaryTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.i
+.PHONY : chapter5/BinaryTree.cpp.i
 
-chapter5/BST.s: chapter5/BST.cpp.s
+chapter5/BinaryTree.s: chapter5/BinaryTree.cpp.s
 
-.PHONY : chapter5/BST.s
+.PHONY : chapter5/BinaryTree.s
 
 # target to generate assembly for a file
-chapter5/BST.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BST.cpp.s
-.PHONY : chapter5/BST.cpp.s
+chapter5/BinaryTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.s
+.PHONY : chapter5/BinaryTree.cpp.s
 
 # Help Target
 help:
@@ -178,9 +178,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DataStructure"
-	@echo "... chapter5/BST.o"
-	@echo "... chapter5/BST.i"
-	@echo "... chapter5/BST.s"
+	@echo "... chapter5/BinaryTree.o"
+	@echo "... chapter5/BinaryTree.i"
+	@echo "... chapter5/BinaryTree.s"
 .PHONY : help
 
 

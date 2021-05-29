@@ -13,6 +13,8 @@ using std::endl;
 using std::queue;
 using ElemType = int;
 
+#define MaxSize 100
+
 // 基本二叉树
 typedef struct BiTNode {
     ElemType data;
@@ -32,7 +34,8 @@ void InOrder(const BiTNode*);                                           // 中�
 void PostOrder(const BiTNode*);                                         // 后序遍历
 void LevelOrder(BiTNode*);                                              // 层次遍历
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
-int DeepthTree(const BiTNode*);                                         // 获取树的深度
+int DepthTree(const BiTNode*);                                          // 获取树的深度
+int BTDepth(BiTNode*);                                            // 非递归算法获取树的深度
 int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
@@ -65,7 +68,8 @@ int main()
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
-    cout << "TreeDeepth:\t" << DeepthTree(normalTree) << endl;
+    cout << "Recursive TreeDepth:\t" << DepthTree(normalTree) << endl;
+    cout << "Non-Recursive TreeDepth:\t" << BTDepth(normalTree) << endl;
     cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
 
     if (DelNode(normalTree, 78)) {
@@ -149,15 +153,38 @@ BiTNode* SearchSeq(BiTNode* node, ElemType data) {
     }
 }
 
-int DeepthTree(const BiTNode* node) {
+int DepthTree(const BiTNode* node) {
     if (node) {
-        int hl = DeepthTree(node->lChild);
-        int hr = DeepthTree(node->rChild);
+        int hl = DepthTree(node->lChild);
+        int hr = DepthTree(node->rChild);
 
         return hl > hr ? hl + 1 : hr + 1;
     } else {
         return 0;
     } 
+}
+
+int BTDepth(BiTNode* node) {
+    if (!node) {
+        return 0;
+    }
+
+    int front = -1, rear = -1;              // 队列的队首指针和队尾指针
+    int last = 0, level = 0;                // 每一层的最后一个元素下标和层数
+    BiTNode* queue[MaxSize];
+    queue[++rear] = node;                   // 根节点入队
+    while (front < rear) {
+        node = queue[++front];              // 队列元素出队
+        if (node->lChild)
+            queue[++rear] = node->lChild;   // 左孩子入队
+        if (node->rChild)
+            queue[++rear] = node->rChild;   // 右孩子入队
+        if (front == last) {                // 处理该层最右孩子结点
+            level++;                        // 层数加一
+            last = rear;                    // 获取下一层最右结点
+        }
+    }
+    return level;
 }
 
 int LeavesCounts(const BiTNode* node) {

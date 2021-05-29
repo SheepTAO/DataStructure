@@ -69,28 +69,28 @@ include CMakeFiles/DataStructure.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DataStructure.dir/flags.make
 
-CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o: CMakeFiles/DataStructure.dir/flags.make
-CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o: ../chapter5/BST.cpp
-CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o: CMakeFiles/DataStructure.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/archtao/Works/Cpp/DataStructure/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o -MF CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o.d -o CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o -c /home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp
+CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o: CMakeFiles/DataStructure.dir/flags.make
+CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o: ../chapter5/BinaryTree.cpp
+CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o: CMakeFiles/DataStructure.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/archtao/Works/Cpp/DataStructure/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o -MF CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o.d -o CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o -c /home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp
 
-CMakeFiles/DataStructure.dir/chapter5/BST.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DataStructure.dir/chapter5/BST.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp > CMakeFiles/DataStructure.dir/chapter5/BST.cpp.i
+CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp > CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.i
 
-CMakeFiles/DataStructure.dir/chapter5/BST.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DataStructure.dir/chapter5/BST.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp -o CMakeFiles/DataStructure.dir/chapter5/BST.cpp.s
+CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp -o CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.s
 
 # Object files for target DataStructure
 DataStructure_OBJECTS = \
-"CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o"
+"CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o"
 
 # External object files for target DataStructure
 DataStructure_EXTERNAL_OBJECTS =
 
-DataStructure: CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o
+DataStructure: CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o
 DataStructure: CMakeFiles/DataStructure.dir/build.make
 DataStructure: CMakeFiles/DataStructure.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/archtao/Works/Cpp/DataStructure/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable DataStructure"

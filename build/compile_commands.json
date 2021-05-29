@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/archtao/Works/Cpp/DataStructure/build",
-  "command": "/usr/bin/c++   -g -std=gnu++14 -o CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o -c /home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp",
-  "file": "/home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp"
+  "command": "/usr/bin/c++   -g -std=gnu++14 -o CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o -c /home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp",
+  "file": "/home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp"
 }
 ]

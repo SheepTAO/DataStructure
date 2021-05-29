@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/archtao/Works/Cpp/DataStructure/chapter5/BST.cpp" "CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o" "gcc" "CMakeFiles/DataStructure.dir/chapter5/BST.cpp.o.d"
+  "/home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp" "CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o" "gcc" "CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o.d"
   )
 
 # Targets to which this target links.
