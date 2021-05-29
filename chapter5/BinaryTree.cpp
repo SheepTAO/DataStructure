@@ -35,8 +35,9 @@ void PostOrder(const BiTNode*);                                         // 后�
 void LevelOrder(BiTNode*);                                              // 层次遍历
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
 int DepthTree(const BiTNode*);                                          // 获取树的深度
-int BTDepth(BiTNode*);                                            // 非递归算法获取树的深度
+int BTDepth(BiTNode*);                                                  // 非递归算法获取树的深度
 int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
+bool IsComplete(BiTNode*);                                              // 判断是否是完全二叉树
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
 void LinkThread(ThreadNode*&, ThreadNode*&);                            // 链接线索
@@ -71,6 +72,7 @@ int main()
     cout << "Recursive TreeDepth:\t" << DepthTree(normalTree) << endl;
     cout << "Non-Recursive TreeDepth:\t" << BTDepth(normalTree) << endl;
     cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
+    cout << "IsComplete?:\t" << IsComplete(normalTree) << endl;
 
     if (DelNode(normalTree, 78)) {
         cout << "Delete Finished." << endl;
@@ -185,6 +187,32 @@ int BTDepth(BiTNode* node) {
         }
     }
     return level;
+}
+
+bool IsComplete(BiTNode* node) {
+    if (!node)
+        return false;
+
+    queue<BiTNode*> q;
+    BiTNode* pNode;
+    q.push(node);
+    while (!q.empty()) {
+        pNode = q.front();
+        q.pop();
+        if (pNode) {                        // 空结点也保存
+            q.push(pNode->lChild);
+            q.push(pNode->rChild);
+        } else {                            // 遇到空结点
+            while (!q.empty()) {
+                pNode = q.front();
+                q.pop();
+                if (pNode)
+                    return false;
+            }
+        }
+    } // while (!q.empty())
+
+    return true;
 }
 
 int LeavesCounts(const BiTNode* node) {
