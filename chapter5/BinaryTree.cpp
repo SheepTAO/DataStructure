@@ -8,6 +8,7 @@
 #include <iostream>
 #include <queue>
 #include <stack>
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -76,17 +77,19 @@ int main()
     cout << "PreOrderNonRecursive:\t"; PreOrderNonRecursive(normalTree); cout << endl;
     cout << "InOrder:\t"; InOrder(normalTree);  cout << endl;
     cout << "InOrderNonRecursive:\t"; InOrderNonRecursive(normalTree); cout << endl;
+    cout << "PostOrder:\t"; PostOrder(normalTree); cout << endl;
+    cout << "PostOrderNonRecursive:\t"; PostOrderNonRecursive(normalTree); cout << endl;
     cout << "LevelOrder:\t"; LevelOrder(normalTree);   cout << endl;
     cout << "InThreadOrder:\t"; InThreadOrder(threadTree);  cout << endl;
 
     cout << "Recursive TreeDepth:\t" << DepthTree(normalTree) << endl;
     cout << "Non-Recursive TreeDepth:\t" << BTDepth(normalTree) << endl;
     cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
-    cout << "IsComplete?:\t" << IsComplete(normalTree) << endl;
+    cout << std::boolalpha << "IsComplete:\t" << IsComplete(normalTree) << endl;
 
     if (DelNode(normalTree, 78)) {
         cout << "Delete Finished." << endl;
-        cout << "Now inOrder:\t"; InOrder(normalTree);  cout << endl;
+        cout << "Now InOrder:\t"; InOrder(normalTree);  cout << endl;
     } else {
         cout << "Delete Failed!" << endl;
     }
@@ -177,10 +180,24 @@ void PostOrder(const BiTNode* node) {
 // 非递归后序遍历
 void PostOrderNonRecursive(BiTNode* node) {
     stack<BiTNode*> s;
+    BiTNode* r = nullptr;
 
     while (node || !s.empty()) {
-
-    }
+        if (node) {                                             // 走到最左边
+            s.push(node);
+            node = node->lChild;
+        } else {
+            node = s.top();
+            if (node->rChild && node->rChild != r) {            // 如果右孩子非空且未访问过
+                node = node->rChild;                            // 转向右孩子
+            } else {                                            // 否则为已经访问过结点
+                s.pop();                                        // 出栈
+                cout << node->data << "\t";
+                r = node;                                       // 标记当前结点
+                node = nullptr;                                 // 每一次出栈访问完一个结点相当于遍历完以该结点为根的子树，需将node置为nullptr
+            }
+        } // else
+    } // while
 }
 
 void LevelOrder(BiTNode* node) {
