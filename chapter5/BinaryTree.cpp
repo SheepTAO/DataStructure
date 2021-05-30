@@ -8,7 +8,6 @@
 #include <iostream>
 #include <queue>
 #include <stack>
-#include <iomanip>
 
 using std::cout;
 using std::endl;
