@@ -44,6 +44,7 @@ int DepthTree(const BiTNode*);                                          // 获�
 int BTDepth(BiTNode*);                                                  // 非递归算法获取树的深度
 int BTWidth(BiTNode*);                                                  // 统计二叉树宽度(具有结点数目最多那一层结点的个数)
 int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
+int WPL(BiTNode*);                                                // 计算二叉树的带权路径长度(only叶子结点)
 bool IsComplete(BiTNode*);                                              // 判断是否是完全二叉树
 // --------------------------------------
 void InsertThread(ThreadNode*&, ElemType);                              // 插入线索二叉树
@@ -85,6 +86,7 @@ int main()
     cout << "Recursive TreeDepth:\t" << DepthTree(normalTree) << endl;
     cout << "Non-Recursive TreeDepth:\t" << BTDepth(normalTree) << endl;
     cout << "TreeWidth:\t" << BTWidth(normalTree) << endl;
+    cout << "WPL:\t" << WPL(normalTree) << endl;
     cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
     cout << std::boolalpha << "IsComplete:\t" << IsComplete(normalTree) << endl;
 
@@ -285,6 +287,31 @@ int BTWidth(BiTNode* node) {
     return width;
 }
 
+int WPL(BiTNode* node) {
+    if (!node)
+        return 0;
+
+    int front = -1, rear = -1;
+    int level = 0, last = 0;
+    int wpl = 0;
+    BiTNode* q[MaxSize];
+    q[++rear] = node;
+    while (front < rear) {
+        node = q[++front];
+        if (!node->rChild && !node->lChild)
+            wpl += level * node->data;
+        if (node->lChild)
+            q[++rear] = node->lChild;
+        if (node->rChild)
+            q[++rear] = node->rChild;
+        if (front == last) {
+            level++;
+            last = rear;
+        }
+    }
+    return wpl;
+}
+
 bool IsComplete(BiTNode* node) {
     if (!node)
         return false;
@@ -421,13 +448,13 @@ bool DelNode(BiTNode*& node, ElemType data) {
     BiTNode* p, *pre;
     pre = nullptr;
     p = node;
-    bool LR = false;                                                // 0-左，1-右
+    bool LR;                                                        // 0-左，1-右
 
     if (!node) {
         return false;                                               // 空树
     } else {
         SearchNode(p, pre, data);
-        LR = pre->lChild == p ? 1 : 0;                              // 确定删除是左子树还是右子树
+        LR = pre->lChild == p;                                      // 确定删除是左子树还是右子树
         if (p) {
             if (!p->lChild && !p->rChild) {                         // 删除叶子结点
                 if (LR) 
@@ -450,7 +477,7 @@ bool DelNode(BiTNode*& node, ElemType data) {
             } else {                                                // 左孩子非空且右孩子非空
                 BiTNode* del = SearchNext(p->rChild);
                 ElemType newData = del->data;
-                DelNode(p, del->data);                              // 回归前三种删除方式
+                DelNode(p, del->data);                           // 回归前三种删除方式
                 p->data = newData;
             }
             return true;
