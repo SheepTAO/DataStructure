@@ -42,6 +42,7 @@ void LevelOrder(BiTNode*);                                              // 层�
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
 int DepthTree(const BiTNode*);                                          // 获取树的深度
 int BTDepth(BiTNode*);                                                  // 非递归算法获取树的深度
+int BTWidth(BiTNode*);                                                  // 计算二叉树宽度(具有结点数目最多那一层结点的个数)
 int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
 bool IsComplete(BiTNode*);                                              // 判断是否是完全二叉树
 // --------------------------------------
@@ -83,6 +84,7 @@ int main()
 
     cout << "Recursive TreeDepth:\t" << DepthTree(normalTree) << endl;
     cout << "Non-Recursive TreeDepth:\t" << BTDepth(normalTree) << endl;
+    cout << "TreeWidth:\t" << BTWidth(normalTree) << endl;
     cout << "LeavesCounts:\t" << LeavesCounts(normalTree) << endl;
     cout << std::boolalpha << "IsComplete:\t" << IsComplete(normalTree) << endl;
 
@@ -259,6 +261,28 @@ int BTDepth(BiTNode* node) {
         }
     }
     return level;
+}
+
+int BTWidth(BiTNode* node) {
+    if (!node)
+        return 0;
+
+    int front = -1, rear = -1;
+    int last = 0, width = 1;
+    BiTNode* q[MaxSize];
+    q[++rear] = node;
+    while (front < rear) {
+        node = q[++front];
+        if (node->lChild)
+            q[++rear] = node->lChild;
+        if (node->rChild)
+            q[++rear] = node->rChild;
+        if (front == last) {
+            last = rear;
+            width = width < last - front ? last - front : width;
+        }
+    }
+    return width;
 }
 
 bool IsComplete(BiTNode* node) {
