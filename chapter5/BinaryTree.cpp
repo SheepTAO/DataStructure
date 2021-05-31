@@ -42,7 +42,7 @@ void LevelOrder(BiTNode*);                                              // 层�
 BiTNode* SearchSeq(BiTNode*, ElemType);                                 // 有序表的顺序查找
 int DepthTree(const BiTNode*);                                          // 获取树的深度
 int BTDepth(BiTNode*);                                                  // 非递归算法获取树的深度
-int BTWidth(BiTNode*);                                                  // 计算二叉树宽度(具有结点数目最多那一层结点的个数)
+int BTWidth(BiTNode*);                                                  // 统计二叉树宽度(具有结点数目最多那一层结点的个数)
 int LeavesCounts(const BiTNode*);                                       // 获取叶子结点的个数
 bool IsComplete(BiTNode*);                                              // 判断是否是完全二叉树
 // --------------------------------------
