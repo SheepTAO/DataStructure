@@ -6,11 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/archtao/Works/Cpp/DataStructure/chapter5/BinaryTree.cpp
+/home/archtao/Works/Cpp/DataStructure/chapter6/MGraph.cpp
 iostream
 -
 queue
--
-stack
 -
 

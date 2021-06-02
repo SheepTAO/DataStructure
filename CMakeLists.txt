@@ -4,4 +4,4 @@ project(DataStructure)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DataStructure chapter5/BinaryTree.cpp)
+add_executable(DataStructure chapter6/MGraph.cpp)

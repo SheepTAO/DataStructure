@@ -142,32 +142,32 @@ DataStructure/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/build
 .PHONY : DataStructure/fast
 
-chapter5/BinaryTree.o: chapter5/BinaryTree.cpp.o
+chapter6/MGraph.o: chapter6/MGraph.cpp.o
 
-.PHONY : chapter5/BinaryTree.o
+.PHONY : chapter6/MGraph.o
 
 # target to build an object file
-chapter5/BinaryTree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o
-.PHONY : chapter5/BinaryTree.cpp.o
+chapter6/MGraph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.o
+.PHONY : chapter6/MGraph.cpp.o
 
-chapter5/BinaryTree.i: chapter5/BinaryTree.cpp.i
+chapter6/MGraph.i: chapter6/MGraph.cpp.i
 
-.PHONY : chapter5/BinaryTree.i
+.PHONY : chapter6/MGraph.i
 
 # target to preprocess a source file
-chapter5/BinaryTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.i
-.PHONY : chapter5/BinaryTree.cpp.i
+chapter6/MGraph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.i
+.PHONY : chapter6/MGraph.cpp.i
 
-chapter5/BinaryTree.s: chapter5/BinaryTree.cpp.s
+chapter6/MGraph.s: chapter6/MGraph.cpp.s
 
-.PHONY : chapter5/BinaryTree.s
+.PHONY : chapter6/MGraph.s
 
 # target to generate assembly for a file
-chapter5/BinaryTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.s
-.PHONY : chapter5/BinaryTree.cpp.s
+chapter6/MGraph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.s
+.PHONY : chapter6/MGraph.cpp.s
 
 # Help Target
 help:
@@ -178,9 +178,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DataStructure"
-	@echo "... chapter5/BinaryTree.o"
-	@echo "... chapter5/BinaryTree.i"
-	@echo "... chapter5/BinaryTree.s"
+	@echo "... chapter6/MGraph.o"
+	@echo "... chapter6/MGraph.i"
+	@echo "... chapter6/MGraph.s"
 .PHONY : help
 
 

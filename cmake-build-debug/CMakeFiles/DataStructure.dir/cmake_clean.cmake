@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o"
+  "CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.o"
   "DataStructure"
   "DataStructure.pdb"
 )

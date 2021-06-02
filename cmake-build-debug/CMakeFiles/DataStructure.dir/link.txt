@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/DataStructure.dir/chapter5/BinaryTree.cpp.o -o DataStructure 
+/usr/bin/c++ -g CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.o -o DataStructure 
