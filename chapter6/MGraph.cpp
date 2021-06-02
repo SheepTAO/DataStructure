@@ -20,6 +20,7 @@ typedef struct MGraph {
 bool visited[MaxVertexNum];                                                         // 访问标记数组
 
 // --------------------------------------------
+int GetArcNum(const MGraph&);                                                        // 获取图中弧的数量
 void InitNonDirection(MGraph&);                                                      // 初始化无向图的邻接矩阵
 bool Adjacent(const MGraph&, VertexType, VertexType);                                // 判断图是否存在边(x, y)
 int FirstNeighbor(const MGraph&, VertexType);                                        // 返回图中第一个邻接点
@@ -45,8 +46,19 @@ int main()
     InitNonDirection(g);
     VISIT(BFS(g, 1));
     VISIT(DFS(g, 1));
+    cout << "ArcNum:\t" << g.arcNum << endl;
 
     return 0;
+}
+
+int GetArcNum(const MGraph& g) {
+    int counts = 0;
+
+    for (int i = 0; i < g.vexNum; ++i)
+        for (int j = 0; j < g.vexNum; ++j)
+            if (g.edge[i][j])
+                ++counts;
+    return counts / 2;
 }
 
 // 生成一个自己定义的图见Graph.png
@@ -70,7 +82,7 @@ void InitNonDirection(MGraph& g) {
     g.edge[5][6] = g.edge[6][5] = true;
     g.edge[6][7] = g.edge[7][6] = true;
     g.vexNum = 8;
-    g.arcNum = 10;
+    g.arcNum = GetArcNum(g);
 }
 
 // 判断是否存在边(x, y) 存在返回true 不存在返回false
