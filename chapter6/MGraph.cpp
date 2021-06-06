@@ -8,7 +8,6 @@
 
 using std::cout;
 using std::endl;
-using std::queue;
 using VertexType = int;                                                             // 顶点的数据类型
 using EdgeType = bool;                                                              // 带权图中边上权值的数据类型
 
@@ -46,7 +45,6 @@ int main()
     InitNonDirection(g);
     VISIT(BFS(g, 1));
     VISIT(DFS(g, 1));
-    cout << "ArcNum:\t" << g.arcNum << endl;
 
     return 0;
 }
@@ -127,18 +125,17 @@ void BFSTraverse(const MGraph& g) {
 
 // 广度优先遍历类似于二叉树层序遍历法 -要借助队列和访问数组
 void BFS(const MGraph& g, VertexType v) {
-    queue<VertexType> q;
-    cout << g.vex[v] << "\t";
+    std::queue<VertexType> q;
     visited[v] = true;
     q.push(v);
     while (!q.empty()) {
         v = q.front();
-        q.pop();
-        for (VertexType w = FirstNeighbor(g, v); w >= 0; w = NextNeighbor(g, v, w))
-            if (!visited[w]) {
-                cout << g.vex[w] << "\t";
-                visited[w] = true;
-                q.push(w);
+        cout << g.vex[v] << "\t";                                                               // 访问w顶点
+        q.pop();                                                                                // 顶点v出队
+        for (VertexType w = FirstNeighbor(g, v); w >= 0; w = NextNeighbor(g, v, w))             // 检测v的所有邻接顶点
+            if (!visited[w]) {                                                                  // w为v尚未访问的邻接顶点
+                visited[w] = true;                                                              // 对w做已访问标记
+                q.push(w);                                                                      // 顶点w入队
             }
     }
 }

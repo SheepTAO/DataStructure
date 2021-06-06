@@ -17,10 +17,12 @@ typedef struct {
     size_t tableLen;
 }SSTable;
 
-void InitSSTable(SSTable&, ElemType*, size_t);                          // 初始化顺序表
+void InitSSTable(SSTable&, const ElemType*, size_t);                    // 初始化顺序表
 void BubbleSort(SSTable&);                                              // 冒泡排序 
 void DisplaySSTable(const SSTable&);                                    // 打印顺序表
-size_t SearchSeq(const SSTable&, const ElemType);                       // 顺序查找元素
+size_t SearchSeq(const SSTable&, ElemType);                             // 顺序查找元素
+size_t BinarySearch(const SSTable&, ElemType);                          // 二分查找
+size_t BSRecursion(const SSTable&, size_t, size_t, ElemType);           // 递归实现二分查找
 void Clear(SSTable&);                                                   // 回收工作            
 
 int main()
@@ -39,18 +41,20 @@ int main()
     BubbleSort(ss);
     DisplaySSTable(ss);
     cout << endl;
-    // cout << "Search Num:";
-    // cin >> key;
-    // if (SearchSeq(ss, key))
-    //     cout << "Find!" << endl;
-    // else
-    //     cout << "Error!" << endl;
+
+    cout << "Input search num:";
+    cin >> key;
+    size_t at = BSRecursion(ss, 1, ss.tableLen-1, key);
+    if (at)
+        cout << "Find! AT:" << at << endl;
+    else
+        cout << "Not find!" << endl;
 
     Clear(ss);
     return 0;
 }
 
-void InitSSTable(SSTable& table, ElemType* data, size_t size) {
+void InitSSTable(SSTable& table, const ElemType* data, size_t size) {
     size = size + 1;
 
     table.data = new ElemType[size];
@@ -80,13 +84,46 @@ void DisplaySSTable(const SSTable& table) {
     }
 }
 
+// 顺序查找
 size_t SearchSeq(const SSTable& table, const ElemType key) {
     table.data[0] = key;                            // “哨兵”
     size_t i = table.tableLen;
 
     for (; table.data[i] != key; --i);              // 从后往前查找
     
-    return i;
+    return i;                                       // 查找失败返回0，成功返回数组下标
+}
+
+// 二分查找 -要求是顺序表且有序
+size_t BinarySearch(const SSTable& table, const ElemType key) {
+    size_t low = 1;
+    size_t high = table.tableLen - 1;
+
+    while (low <= high) {
+        size_t mid = (low + high) / 2;
+//        cout << mid << '-' << table.data[mid] << endl;
+        if (table.data[mid] == key)
+            return mid;                             // 查找成功返回数组下标
+        else if (key < table.data[mid])
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return 0;                                       // 查找失败返回0
+}
+
+// 递归实现二分查找
+size_t BSRecursion(const SSTable& table, size_t low, size_t high, const ElemType key) {
+    if (low <= high) {
+        size_t mid = (low + high) / 2;
+        if (table.data[mid] == key)
+            return mid;
+        else if (key < table.data[mid])
+            return BSRecursion(table, low, mid - 1, key);
+        else
+            return BSRecursion(table, mid + 1, high, key);
+    }
+    return 0;
 }
 
 void Clear(SSTable& table) {

@@ -82,7 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/archtao/Works/Cpp/DataStructure/chapter6/MGraph.cpp">
+		<Unit filename="/home/archtao/Works/Cpp/DataStructure/chapter7/RateList.cpp">
 			<Option target="DataStructure"/>
 		</Unit>
 		<Unit filename="/home/archtao/Works/Cpp/DataStructure/CMakeLists.txt">

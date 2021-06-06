@@ -6,9 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/archtao/Works/Cpp/DataStructure/chapter6/MGraph.cpp
+/home/archtao/Works/Cpp/DataStructure/chapter7/RateList.cpp
 iostream
--
-queue
 -
 

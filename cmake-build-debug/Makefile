@@ -142,32 +142,32 @@ DataStructure/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/build
 .PHONY : DataStructure/fast
 
-chapter6/MGraph.o: chapter6/MGraph.cpp.o
+chapter7/RateList.o: chapter7/RateList.cpp.o
 
-.PHONY : chapter6/MGraph.o
+.PHONY : chapter7/RateList.o
 
 # target to build an object file
-chapter6/MGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.o
-.PHONY : chapter6/MGraph.cpp.o
+chapter7/RateList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.o
+.PHONY : chapter7/RateList.cpp.o
 
-chapter6/MGraph.i: chapter6/MGraph.cpp.i
+chapter7/RateList.i: chapter7/RateList.cpp.i
 
-.PHONY : chapter6/MGraph.i
+.PHONY : chapter7/RateList.i
 
 # target to preprocess a source file
-chapter6/MGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.i
-.PHONY : chapter6/MGraph.cpp.i
+chapter7/RateList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.i
+.PHONY : chapter7/RateList.cpp.i
 
-chapter6/MGraph.s: chapter6/MGraph.cpp.s
+chapter7/RateList.s: chapter7/RateList.cpp.s
 
-.PHONY : chapter6/MGraph.s
+.PHONY : chapter7/RateList.s
 
 # target to generate assembly for a file
-chapter6/MGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter6/MGraph.cpp.s
-.PHONY : chapter6/MGraph.cpp.s
+chapter7/RateList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.s
+.PHONY : chapter7/RateList.cpp.s
 
 # Help Target
 help:
@@ -178,9 +178,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DataStructure"
-	@echo "... chapter6/MGraph.o"
-	@echo "... chapter6/MGraph.i"
-	@echo "... chapter6/MGraph.s"
+	@echo "... chapter7/RateList.o"
+	@echo "... chapter7/RateList.i"
+	@echo "... chapter7/RateList.s"
 .PHONY : help
 
 
