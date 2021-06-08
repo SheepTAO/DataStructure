@@ -16,7 +16,10 @@ public:
     Arr(const Arr<T>&);                                                                 // 拷贝构造函数
     ~Arr();                                                                             // 析构函数
     Arr<T>& operator=(const Arr<T>&);                                                   // 重载复制函数
-    T& operator[](int );                                                                // 提供索引访问
+    T& operator[](int);                                                                 // 提供索引访问
+    const T& operator[](int) const;                                                     // 提供const索引访问
+    explicit operator T*();                                                             // 指针转换重载
+    explicit operator const T*() const;                                                 // 指针转换const
     int GetLength() const;                                                              // 获取数组长度
 // --------------------------------------- 插入排序
     void DISort();                                                                      // 直接插入排序
@@ -76,6 +79,21 @@ Arr<T>& Arr<T>::operator=(const Arr<T>& it) {
 template<class T>
 T& Arr<T>::operator[](int index) {
     return arr[index];
+}
+
+template<class T>
+const T& Arr<T>::operator[](int index) const {
+    return arr[index];
+}
+
+template<class T>
+Arr<T>::operator T*() {
+    return arr;
+}
+
+template<class T>
+Arr<T>::operator const T*() const {
+    return arr;
 }
 
 template<class T>
