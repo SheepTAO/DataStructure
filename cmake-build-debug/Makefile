@@ -142,32 +142,32 @@ DataStructure/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/build
 .PHONY : DataStructure/fast
 
-chapter7/RateList.o: chapter7/RateList.cpp.o
+chapter8/Sort.o: chapter8/Sort.cpp.o
 
-.PHONY : chapter7/RateList.o
+.PHONY : chapter8/Sort.o
 
 # target to build an object file
-chapter7/RateList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.o
-.PHONY : chapter7/RateList.cpp.o
+chapter8/Sort.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter8/Sort.cpp.o
+.PHONY : chapter8/Sort.cpp.o
 
-chapter7/RateList.i: chapter7/RateList.cpp.i
+chapter8/Sort.i: chapter8/Sort.cpp.i
 
-.PHONY : chapter7/RateList.i
+.PHONY : chapter8/Sort.i
 
 # target to preprocess a source file
-chapter7/RateList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.i
-.PHONY : chapter7/RateList.cpp.i
+chapter8/Sort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter8/Sort.cpp.i
+.PHONY : chapter8/Sort.cpp.i
 
-chapter7/RateList.s: chapter7/RateList.cpp.s
+chapter8/Sort.s: chapter8/Sort.cpp.s
 
-.PHONY : chapter7/RateList.s
+.PHONY : chapter8/Sort.s
 
 # target to generate assembly for a file
-chapter7/RateList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.s
-.PHONY : chapter7/RateList.cpp.s
+chapter8/Sort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DataStructure.dir/build.make CMakeFiles/DataStructure.dir/chapter8/Sort.cpp.s
+.PHONY : chapter8/Sort.cpp.s
 
 # Help Target
 help:
@@ -178,9 +178,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DataStructure"
-	@echo "... chapter7/RateList.o"
-	@echo "... chapter7/RateList.i"
-	@echo "... chapter7/RateList.s"
+	@echo "... chapter8/Sort.o"
+	@echo "... chapter8/Sort.i"
+	@echo "... chapter8/Sort.s"
 .PHONY : help
 
 

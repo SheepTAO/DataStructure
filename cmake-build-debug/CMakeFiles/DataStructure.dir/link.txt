@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.o -o DataStructure 
+/usr/bin/c++ -g CMakeFiles/DataStructure.dir/chapter8/Sort.cpp.o -o DataStructure 

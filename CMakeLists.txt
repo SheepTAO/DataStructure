@@ -4,4 +4,4 @@ project(DataStructure)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DataStructure chapter7/RateList.cpp)
+add_executable(DataStructure chapter8/Sort.cpp)

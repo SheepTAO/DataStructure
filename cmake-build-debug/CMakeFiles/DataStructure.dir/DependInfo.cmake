@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/archtao/Works/Cpp/DataStructure/chapter7/RateList.cpp" "/home/archtao/Works/Cpp/DataStructure/cmake-build-debug/CMakeFiles/DataStructure.dir/chapter7/RateList.cpp.o"
+  "/home/archtao/Works/Cpp/DataStructure/chapter8/Sort.cpp" "/home/archtao/Works/Cpp/DataStructure/cmake-build-debug/CMakeFiles/DataStructure.dir/chapter8/Sort.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
