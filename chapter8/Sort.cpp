@@ -24,7 +24,7 @@ public:
     void ShellSort();                                                                   // 希尔排序
 // --------------------------------------- 交换排序
     void BubbleSort();                                                                  // 冒泡排序
-    void QuickSort() { QSInner(1, length - 1); }                                // 快排接口
+    void QuickSort() { QSInner(1, length - 1); }                                        // 快排接口
 protected:
     int Partition(int, int);
     void QSInner(int, int);                                                             // 快速排序
